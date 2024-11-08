@@ -1,5 +1,6 @@
 package com.haikal.appsekolah.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.haikal.appsekolah.DetailsSekolahActivity
 import com.haikal.appsekolah.R
 import com.haikal.appsekolah.model.ModelSekolah
 
@@ -39,7 +41,14 @@ class AdapterSekolah(
         holder.gambarSekolah.setImageResource(currentItem.gambarSekolah)
         holder.nomorTelepon.text = currentItem.nomorTelepon
         holder.cardSekolah.setOnClickListener() {
+            val intent = Intent(holder.itemView.context, DetailsSekolahActivity::class.java)
+            intent.putExtra("namaSekolah", currentItem.namaSekolah)
+            intent.putExtra("gambarSekolah", currentItem.gambarSekolah)
+            intent.putExtra("deskripsiSekolah", currentItem.deskripsiSekolah)
+            intent.putExtra("lattitude", currentItem.lattitude)
+            intent.putExtra("longitude", currentItem.longitude)
 
+            holder.itemView.context.startActivity(intent)
         }
     }
 
